@@ -1,0 +1,16 @@
+
+State Machine - |de0_cv_default|game_fsm:fsm_inst|current_state
+Name current_state.GAME_OVER current_state.PAUSED current_state.PLAYING current_state.MAIN_MENU 
+current_state.MAIN_MENU 0 0 0 0 
+current_state.PLAYING 0 0 1 1 
+current_state.PAUSED 0 1 0 1 
+current_state.GAME_OVER 1 0 0 1 
+
+State Machine - |de0_cv_default|MOUSE:mouse_inst|mouse_state
+Name mouse_state.INPUT_PACKETS mouse_state.WAIT_CMD_ACK mouse_state.WAIT_OUTPUT_READY mouse_state.LOAD_COMMAND2 mouse_state.LOAD_COMMAND mouse_state.INHIBIT_TRANS 
+mouse_state.INHIBIT_TRANS 0 0 0 0 0 0 
+mouse_state.LOAD_COMMAND 0 0 0 0 1 1 
+mouse_state.LOAD_COMMAND2 0 0 0 1 0 1 
+mouse_state.WAIT_OUTPUT_READY 0 0 1 0 0 1 
+mouse_state.WAIT_CMD_ACK 0 1 0 0 0 1 
+mouse_state.INPUT_PACKETS 1 0 0 0 0 1 

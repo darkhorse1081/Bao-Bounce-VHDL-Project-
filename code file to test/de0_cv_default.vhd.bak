@@ -1,0 +1,186 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+entity de0_cv_default is
+    port(
+        -- clock & reset from de0-cv board
+        clock_50    : in std_logic;
+        reset_n     : in std_logic; -- active low reset
+        sw0, sw1, sw2, sw3, sw4, sw5, sw6, sw7, sw8, sw9 : in std_logic;
+        key0, key1, key2, key3 : in std_logic;
+        
+        -- user i/o (role b)
+        -- sw          : in std_logic_vector(9 downto 0);
+        hex0, hex1, hex2, hex3, hex4, hex5 : out std_logic_vector(6 downto 0);
+        led0, led1, led2, led3, led4, led5, led6, led7, led8, led9 : out std_logic;
+
+        
+        
+        -- vga outputs (your role a)
+        vga_r       : out std_logic_vector(3 downto 0);
+        vga_g       : out std_logic_vector(3 downto 0);
+        vga_b       : out std_logic_vector(3 downto 0);
+        vga_hs      : out std_logic;
+        vga_vs      : out std_logic;
+        
+        -- ps/2 mouse (role b)
+        ps2_clk     : inout std_logic;
+        ps2_dat     : inout std_logic
+    );
+end de0_cv_default;
+
+architecture structural of de0_cv_default is
+
+    -- === internal system signals ===
+    signal clk_25mhz      : std_logic;
+    signal reset_sys      : std_logic;
+
+    -- === mouse signals ===
+    signal mouse_row      : std_logic_vector(9 downto 0);
+    signal mouse_col      : std_logic_vector(9 downto 0);
+    signal left_btn, right_btn : std_logic;
+
+    -- === vga sync & routing signals ===
+    signal pixel_row      : std_logic_vector(9 downto 0);
+    signal pixel_col      : std_logic_vector(9 downto 0);
+    
+    signal mux_red        : std_logic;
+    signal mux_green      : std_logic;
+    signal mux_blue       : std_logic;
+    
+    signal vga_red_out    : std_logic;
+    signal vga_green_out  : std_logic;
+    signal vga_blue_out   : std_logic;
+
+    -- === graphics pipeline signals (your custom modules) ===
+    signal wire_bird_on   : std_logic;
+    signal wire_bird_rgb  : std_logic_vector(2 downto 0);
+    signal wire_text_on   : std_logic;
+    signal wire_text_rgb  : std_logic_vector(2 downto 0);
+
+    -- =========================================
+    -- component declarations
+    -- =========================================
+
+    component clk25_gen is
+        port ( clk_50 : in std_logic; clk_25 : out std_logic );
+    end component;
+
+    component vga_sync is
+        port( clock_25mhz, red, green, blue : in std_logic;
+              red_out, green_out, blue_out, horiz_sync_out, vert_sync_out : out std_logic;
+              pixel_row, pixel_column : out std_logic_vector(9 downto 0));
+    end component;
+
+    component mouse is
+        port( clock_25mhz, reset : in std_logic;
+              mouse_data, mouse_clk : inout std_logic;
+              left_button, right_button : out std_logic;
+              mouse_cursor_row, mouse_cursor_column : out std_logic_vector(9 downto 0));       	
+    end component;
+
+    -- your text engine from earlier
+    component text_engine is
+        port( clk_25mhz : in std_logic;
+              pixel_row, pixel_col : in std_logic_vector(9 downto 0);
+              mode_switch : in std_logic;
+              text_on : out std_logic; text_rgb : out std_logic_vector(2 downto 0));
+    end component;
+
+    component seven_seg is
+        port( hex_in : in std_logic_vector(3 downto 0); seg_out : out std_logic_vector(6 downto 0));
+    end component;
+
+begin
+
+    -- 1. system control logic
+    -- convert active-low push button to active-high logic
+    reset_sys <= not reset_n;
+
+    clk_inst : clk25_gen 
+        port map ( clk_50 => clock_50, clk_25 => clk_25mhz );
+
+    -- 2. input layer (role b's focus)
+    mouse_inst : mouse 
+        port map (
+            clock_25mhz => clk_25mhz, reset => reset_sys,
+            mouse_data => ps2_dat, mouse_clk => ps2_clk,
+            left_button => left_btn, right_button => right_btn,
+            mouse_cursor_row => mouse_row, mouse_cursor_column => mouse_col
+        );
+
+    -- 3. graphics layer (your focus: role a)
+    -- your new sprite rasterizer (the bird)
+    sprite_inst : entity work.sprite_rasterizer
+        port map (
+            scan_coord_y  => pixel_row,      -- from vga_sync
+            scan_coord_x  => pixel_col,      -- from vga_sync
+            entity_base_y => mouse_row,      -- vertical position mapped to mouse!
+            render_flag   => wire_bird_on,   
+            output_chroma => wire_bird_rgb   
+        );
+
+    -- your text engine (needs the module i gave you earlier)
+    text_inst : text_engine
+        port map (
+            clk_25mhz     => clk_25mhz,
+            pixel_row     => pixel_row,
+            pixel_col     => pixel_col,
+            mode_switch   => sw(9),          -- sw9 toggles "training" / "game"
+            text_on       => wire_text_on,
+            text_rgb      => wire_text_rgb
+        );
+
+    -- your new display pixel router (the mux)
+    router_inst : entity work.display_pixel_router
+        port map (
+            sprite_active  => wire_bird_on,  
+            sprite_chroma  => wire_bird_rgb, 
+            overlay_active => wire_text_on,  
+            overlay_chroma => wire_text_rgb, 
+            base_chroma    => sw(2 downto 0), -- sw0,1,2 change background!
+            vid_r          => mux_red,        
+            vid_g          => mux_green,      
+            vid_b          => mux_blue        
+        );
+
+    -- 4. hardware sync (provided module)
+    vga_sync_inst : vga_sync 
+        port map(
+            clock_25mhz => clk_25mhz,
+            red => mux_red, green => mux_green, blue => mux_blue,
+            red_out => vga_red_out, green_out => vga_green_out, blue_out => vga_blue_out,
+            horiz_sync_out => vga_hs, vert_sync_out => vga_vs,
+            pixel_row => pixel_row, pixel_column => pixel_col
+        );
+
+    -- drive the 4-bit de0-cv vga dac
+    vga_r <= vga_red_out & vga_red_out & vga_red_out & vga_red_out;
+    vga_g <= vga_green_out & vga_green_out & vga_green_out & vga_green_out;
+    vga_b <= vga_blue_out & vga_blue_out & vga_blue_out & vga_blue_out;
+
+    led0 <= sw0;
+    led1 <= sw1;
+    led2 <= sw2;
+    led3 <= sw3;
+    led4 <= sw4;
+    led5 <= sw5;
+    led6 <= sw6;
+    led7 <= sw7;
+    led8 <= sw8;
+    led9 <= sw9;
+
+    -- 5. debugging output (role b's focus)
+    -- displaying mouse x-coordinate
+    seg_x0: seven_seg port map(hex_in => mouse_col(3 downto 0), seg_out => hex0);
+    seg_x1: seven_seg port map(hex_in => mouse_col(7 downto 4), seg_out => hex1);
+    seg_x2: seven_seg port map(hex_in => "00" & mouse_col(9 downto 8), seg_out => hex2);
+
+    -- displaying mouse y-coordinate
+    seg_y0: seven_seg port map(hex_in => mouse_row(3 downto 0), seg_out => hex3);
+    seg_y1: seven_seg port map(hex_in => mouse_row(7 downto 4), seg_out => hex4);
+    seg_y2: seven_seg port map(hex_in => "00" & mouse_row(9 downto 8), seg_out => hex5);
+
+end structural; 

@@ -1,0 +1,20 @@
+Fitter Status : Successful - Wed May 27 19:12:56 2026
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : de0_cv_default
+Top-level Entity Name : de0_cv_default
+Family : Cyclone V
+Device : 5CEBA4F23C7
+Timing Models : Final
+Logic utilization (in ALMs) : 1,248 / 18,480 ( 7 % )
+Total registers : 403
+Total pins : 84 / 224 ( 38 % )
+Total virtual pins : 0
+Total block memory bits : 16,384 / 3,153,920 ( < 1 % )
+Total RAM Blocks : 4 / 308 ( 1 % )
+Total DSP Blocks : 0 / 66 ( 0 % )
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 0 / 4 ( 0 % )
+Total DLLs : 0 / 4 ( 0 % )

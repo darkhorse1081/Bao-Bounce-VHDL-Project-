@@ -1,0 +1,62 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+ENTITY display_pixel_router IS
+    PORT(
+        game_state   : IN std_logic_vector(1 downto 0);
+        sw_training  : IN std_logic; -- SW(9) checks if Training or Single Player
+        
+        text_menu_on : IN std_logic;
+        text_play_on : IN std_logic;
+        text_over_on : IN std_logic;
+        
+        bird_on      : IN std_logic;
+        pipe_on      : IN std_logic;
+        ground_on    : IN std_logic;
+        gift_on      : IN std_logic;
+        
+        vid_r, vid_g, vid_b : OUT std_logic
+    );
+END display_pixel_router;
+
+ARCHITECTURE behavior OF display_pixel_router IS
+BEGIN
+    PROCESS(game_state, sw_training, text_menu_on, text_play_on, text_over_on, bird_on, pipe_on, ground_on, gift_on)
+    BEGIN
+        -- Default
+        vid_r <= '0'; vid_g <= '0'; vid_b <= '0';
+        
+        -- Overlays
+        IF (game_state = "00" AND text_menu_on = '1') OR
+           (game_state = "11" AND text_over_on = '1') OR
+           ((game_state = "01" OR game_state = "10") AND text_play_on = '1') THEN
+            vid_r <= '1'; vid_g <= '1'; vid_b <= '1'; 
+            
+        -- Sprites
+        ELSIF bird_on = '1' THEN
+            vid_r <= '1'; vid_g <= '1'; vid_b <= '0'; -- Yellow Bird
+        ELSIF gift_on = '1' THEN
+            vid_r <= '0'; vid_g <= '0'; vid_b <= '1'; -- Blue Gift Box
+        ELSIF pipe_on = '1' THEN
+            vid_r <= '0'; vid_g <= '1'; vid_b <= '0'; -- Green Pipes
+        ELSIF ground_on = '1' THEN
+            vid_r <= '1'; vid_g <= '0'; vid_b <= '0'; -- Red Ground
+            
+        -- Backgrounds (Matching your interim report spec perfectly)
+        ELSE
+            IF game_state = "00" THEN
+                vid_r <= '0'; vid_g <= '0'; vid_b <= '1'; -- Blue Menu
+            ELSIF game_state = "01" THEN
+                IF sw_training = '1' THEN
+                    vid_r <= '1'; vid_g <= '0'; vid_b <= '0'; -- RED for Training
+                ELSE
+                    vid_r <= '0'; vid_g <= '1'; vid_b <= '0'; -- GREEN for Single Player
+                END IF;
+            ELSIF game_state = "10" THEN
+                vid_r <= '0'; vid_g <= '0'; vid_b <= '0'; -- Black Pause
+            ELSIF game_state = "11" THEN
+                vid_r <= '1'; vid_g <= '0'; vid_b <= '0'; -- Red Game Over
+            END IF;
+        END IF;
+    END PROCESS;
+END behavior;

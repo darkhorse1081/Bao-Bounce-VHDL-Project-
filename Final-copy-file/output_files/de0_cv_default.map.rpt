@@ -1,0 +1,1262 @@
+Analysis & Synthesis report for de0_cv_default
+Wed May 27 20:14:17 2026
+Quartus Prime Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. State Machine - |de0_cv_default|game_fsm:fsm_inst|current_state
+ 10. State Machine - |de0_cv_default|MOUSE:mouse_inst|mouse_state
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Source assignments for text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 16. Source assignments for text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 17. Source assignments for text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 18. Source assignments for text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated
+ 19. Parameter Settings for User Entity Instance: text_engine:t_menu
+ 20. Parameter Settings for User Entity Instance: text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component
+ 21. Parameter Settings for User Entity Instance: text_engine:t_train
+ 22. Parameter Settings for User Entity Instance: text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component
+ 23. Parameter Settings for User Entity Instance: text_engine:t_game
+ 24. Parameter Settings for User Entity Instance: text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component
+ 25. Parameter Settings for User Entity Instance: text_engine:t_over
+ 26. Parameter Settings for User Entity Instance: text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component
+ 27. altsyncram Parameter Settings by Entity Instance
+ 28. Port Connectivity Checks: "text_engine:t_over"
+ 29. Port Connectivity Checks: "text_engine:t_game"
+ 30. Port Connectivity Checks: "text_engine:t_train"
+ 31. Port Connectivity Checks: "text_engine:t_menu"
+ 32. Port Connectivity Checks: "MOUSE:mouse_inst"
+ 33. Port Connectivity Checks: "VGA_SYNC:vga_sync_inst"
+ 34. Post-Synthesis Netlist Statistics for Top Partition
+ 35. Elapsed Time Per Partition
+ 36. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2025  Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus Prime License Agreement,
+the Altera IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Altera and sold by Altera or its authorized distributors.  Please
+refer to the Altera Software License Subscription Agreements 
+on the Quartus Prime software download page.
+
+
+
++-----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                      ;
++---------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Wed May 27 20:14:17 2026           ;
+; Quartus Prime Version           ; 24.1std.0 Build 1077 03/04/2025 SC Lite Edition ;
+; Revision Name                   ; de0_cv_default                                  ;
+; Top-level Entity Name           ; de0_cv_default                                  ;
+; Family                          ; Cyclone V                                       ;
+; Logic utilization (in ALMs)     ; N/A                                             ;
+; Total registers                 ; 383                                             ;
+; Total pins                      ; 84                                              ;
+; Total virtual pins              ; 0                                               ;
+; Total block memory bits         ; 16,384                                          ;
+; Total DSP Blocks                ; 0                                               ;
+; Total HSSI RX PCSs              ; 0                                               ;
+; Total HSSI PMA RX Deserializers ; 0                                               ;
+; Total HSSI TX PCSs              ; 0                                               ;
+; Total HSSI PMA TX Serializers   ; 0                                               ;
+; Total PLLs                      ; 0                                               ;
+; Total DLLs                      ; 0                                               ;
++---------------------------------+-------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CEBA4F23C7        ;                    ;
+; Top-level entity name                                                           ; de0_cv_default     ; de0_cv_default     ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 4           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                    ;
++----------------------------------+-----------------+----------------------------------------+---------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                      ; Library ;
++----------------------------------+-----------------+----------------------------------------+---------------------------------------------------------------------------------------------------+---------+
+; vga_sync.vhd                     ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/vga_sync.vhd             ;         ;
+; text_engine.vhd                  ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/text_engine.vhd          ;         ;
+; seven_seg.vhd                    ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/seven_seg.vhd            ;         ;
+; score_lives.vhd                  ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/score_lives.vhd          ;         ;
+; mouse.vhd                        ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd                ;         ;
+; lfsr.vhd                         ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/lfsr.vhd                 ;         ;
+; game_fsm.vhd                     ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/game_fsm.vhd             ;         ;
+; display_pixel_router.vhd         ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/display_pixel_router.vhd ;         ;
+; de0_cv_default.vhd               ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd       ;         ;
+; conveyor_belt.vhd                ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd        ;         ;
+; clk25_gen.vhd                    ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/clk25_gen.vhd            ;         ;
+; char_rom.vhd                     ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/char_rom.vhd             ;         ;
+; bird_logic.vhd                   ; yes             ; User VHDL File                         ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/bird_logic.vhd           ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf                          ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                   ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_mux.inc                             ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/lpm_decode.inc                          ;         ;
+; aglobal241.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/aglobal241.inc                          ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/a_rdenreg.inc                           ;         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altrom.inc                              ;         ;
+; altram.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altram.inc                              ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altdpram.inc                            ;         ;
+; db/altsyncram_d5g1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/db/altsyncram_d5g1.tdf   ;         ;
+; tcgrom.mif                       ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/tcgrom.mif               ;         ;
++----------------------------------+-----------------+----------------------------------------+---------------------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                              ;
++---------------------------------------------+----------------------------+
+; Resource                                    ; Usage                      ;
++---------------------------------------------+----------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 1219                       ;
+;                                             ;                            ;
+; Combinational ALUT usage for logic          ; 2062                       ;
+;     -- 7 input functions                    ; 7                          ;
+;     -- 6 input functions                    ; 361                        ;
+;     -- 5 input functions                    ; 224                        ;
+;     -- 4 input functions                    ; 248                        ;
+;     -- <=3 input functions                  ; 1222                       ;
+;                                             ;                            ;
+; Dedicated logic registers                   ; 383                        ;
+;                                             ;                            ;
+; I/O pins                                    ; 84                         ;
+; Total MLAB memory bits                      ; 0                          ;
+; Total block memory bits                     ; 16384                      ;
+;                                             ;                            ;
+; Total DSP Blocks                            ; 0                          ;
+;                                             ;                            ;
+; Maximum fan-out node                        ; clk25_gen:clk_inst|clk_div ;
+; Maximum fan-out                             ; 369                        ;
+; Total fan-out                               ; 8591                       ;
+; Average fan-out                             ; 3.25                       ;
++---------------------------------------------+----------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                  ; Entity Name          ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+; |de0_cv_default                              ; 2062 (1)            ; 383 (0)                   ; 16384             ; 0          ; 84   ; 0            ; |de0_cv_default                                                                                                      ; de0_cv_default       ; work         ;
+;    |MOUSE:mouse_inst|                        ; 49 (49)             ; 63 (63)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|MOUSE:mouse_inst                                                                                     ; MOUSE                ; work         ;
+;    |VGA_SYNC:vga_sync_inst|                  ; 36 (36)             ; 43 (43)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|VGA_SYNC:vga_sync_inst                                                                               ; VGA_SYNC             ; work         ;
+;    |bird_logic:bird_inst|                    ; 60 (60)             ; 11 (11)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|bird_logic:bird_inst                                                                                 ; bird_logic           ; work         ;
+;    |clk25_gen:clk_inst|                      ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|clk25_gen:clk_inst                                                                                   ; clk25_gen            ; work         ;
+;    |conveyor_belt:level_inst|                ; 1658 (1658)         ; 172 (172)                 ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|conveyor_belt:level_inst                                                                             ; conveyor_belt        ; work         ;
+;    |display_pixel_router:router_inst|        ; 22 (22)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|display_pixel_router:router_inst                                                                     ; display_pixel_router ; work         ;
+;    |game_fsm:fsm_inst|                       ; 11 (11)             ; 6 (6)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|game_fsm:fsm_inst                                                                                    ; game_fsm             ; work         ;
+;    |lfsr:lfsr_inst|                          ; 8 (8)               ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|lfsr:lfsr_inst                                                                                       ; lfsr                 ; work         ;
+;    |score_lives:score_inst|                  ; 103 (103)           ; 76 (76)                   ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|score_lives:score_inst                                                                               ; score_lives          ; work         ;
+;    |seven_seg:seg_lives|                     ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|seven_seg:seg_lives                                                                                  ; seven_seg            ; work         ;
+;    |seven_seg:seg_lvl|                       ; 4 (4)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|seven_seg:seg_lvl                                                                                    ; seven_seg            ; work         ;
+;    |seven_seg:seg_score0|                    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|seven_seg:seg_score0                                                                                 ; seven_seg            ; work         ;
+;    |seven_seg:seg_score1|                    ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |de0_cv_default|seven_seg:seg_score1                                                                                 ; seven_seg            ; work         ;
+;    |text_engine:t_game|                      ; 18 (16)             ; 1 (1)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_game                                                                                   ; text_engine          ; work         ;
+;       |char_rom:rom_inst|                    ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_game|char_rom:rom_inst                                                                 ; char_rom             ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component                                 ; altsyncram           ; work         ;
+;             |altsyncram_d5g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated  ; altsyncram_d5g1      ; work         ;
+;    |text_engine:t_menu|                      ; 37 (35)             ; 1 (1)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_menu                                                                                   ; text_engine          ; work         ;
+;       |char_rom:rom_inst|                    ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_menu|char_rom:rom_inst                                                                 ; char_rom             ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component                                 ; altsyncram           ; work         ;
+;             |altsyncram_d5g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated  ; altsyncram_d5g1      ; work         ;
+;    |text_engine:t_over|                      ; 16 (13)             ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_over                                                                                   ; text_engine          ; work         ;
+;       |char_rom:rom_inst|                    ; 3 (3)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_over|char_rom:rom_inst                                                                 ; char_rom             ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component                                 ; altsyncram           ; work         ;
+;             |altsyncram_d5g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated  ; altsyncram_d5g1      ; work         ;
+;    |text_engine:t_train|                     ; 17 (15)             ; 1 (1)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_train                                                                                  ; text_engine          ; work         ;
+;       |char_rom:rom_inst|                    ; 2 (2)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_train|char_rom:rom_inst                                                                ; char_rom             ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component                                ; altsyncram           ; work         ;
+;             |altsyncram_d5g1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 4096              ; 0          ; 0    ; 0            ; |de0_cv_default|text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ; altsyncram_d5g1      ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------------+----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                              ;
++-----------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+; Name                                                                                                            ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF        ;
++-----------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+; text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM  ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096 ; tcgrom.mif ;
+; text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM  ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096 ; tcgrom.mif ;
+; text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM  ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096 ; tcgrom.mif ;
+; text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 512          ; 8            ; --           ; --           ; 4096 ; tcgrom.mif ;
++-----------------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+------+------------+
+
+
+Encoding Type:  One-Hot
++----------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |de0_cv_default|game_fsm:fsm_inst|current_state                                                            ;
++-------------------------+-------------------------+----------------------+-----------------------+-------------------------+
+; Name                    ; current_state.GAME_OVER ; current_state.PAUSED ; current_state.PLAYING ; current_state.MAIN_MENU ;
++-------------------------+-------------------------+----------------------+-----------------------+-------------------------+
+; current_state.MAIN_MENU ; 0                       ; 0                    ; 0                     ; 0                       ;
+; current_state.PLAYING   ; 0                       ; 0                    ; 1                     ; 1                       ;
+; current_state.PAUSED    ; 0                       ; 1                    ; 0                     ; 1                       ;
+; current_state.GAME_OVER ; 1                       ; 0                    ; 0                     ; 1                       ;
++-------------------------+-------------------------+----------------------+-----------------------+-------------------------+
+
+
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |de0_cv_default|MOUSE:mouse_inst|mouse_state                                                                                                                                            ;
++-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
+; Name                          ; mouse_state.INPUT_PACKETS ; mouse_state.WAIT_CMD_ACK ; mouse_state.WAIT_OUTPUT_READY ; mouse_state.LOAD_COMMAND2 ; mouse_state.LOAD_COMMAND ; mouse_state.INHIBIT_TRANS ;
++-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
+; mouse_state.INHIBIT_TRANS     ; 0                         ; 0                        ; 0                             ; 0                         ; 0                        ; 0                         ;
+; mouse_state.LOAD_COMMAND      ; 0                         ; 0                        ; 0                             ; 0                         ; 1                        ; 1                         ;
+; mouse_state.LOAD_COMMAND2     ; 0                         ; 0                        ; 0                             ; 1                         ; 0                        ; 1                         ;
+; mouse_state.WAIT_OUTPUT_READY ; 0                         ; 0                        ; 1                             ; 0                         ; 0                        ; 1                         ;
+; mouse_state.WAIT_CMD_ACK      ; 0                         ; 1                        ; 0                             ; 0                         ; 0                        ; 1                         ;
+; mouse_state.INPUT_PACKETS     ; 1                         ; 0                        ; 0                             ; 0                         ; 0                        ; 1                         ;
++-------------------------------+---------------------------+--------------------------+-------------------------------+---------------------------+--------------------------+---------------------------+
+
+
++--------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                               ;
++------------------------------------------------+-------------------------------------------------+
+; Register name                                  ; Reason for Removal                              ;
++------------------------------------------------+-------------------------------------------------+
+; conveyor_belt:level_inst|pipes[0].gap_y[9..30] ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[1].gap_y[9..30] ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[2].gap_y[9..30] ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[3].gap_y[9..30] ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:mouse_inst|CHAROUT[4..7]                 ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:mouse_inst|CHAROUT[3]                    ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:mouse_inst|CHAROUT[2]                    ; Stuck at VCC due to stuck port data_in          ;
+; MOUSE:mouse_inst|CHAROUT[0,1]                  ; Stuck at GND due to stuck port data_in          ;
+; MOUSE:mouse_inst|SHIFTOUT[10]                  ; Stuck at VCC due to stuck port data_in          ;
+; text_engine:t_over|delay                       ; Merged with text_engine:t_menu|delay            ;
+; score_lives:score_inst|vsync_prev              ; Merged with conveyor_belt:level_inst|vsync_prev ;
+; VGA_SYNC:vga_sync_inst|pixel_row[9]            ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[1].gap_y[31]    ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[2].gap_y[31]    ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[3].gap_y[31]    ; Stuck at GND due to stuck port data_in          ;
+; conveyor_belt:level_inst|pipes[0].gap_y[31]    ; Stuck at GND due to stuck port data_in          ;
+; Total Number of Removed Registers = 104        ;                                                 ;
++------------------------------------------------+-------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 383   ;
+; Number of registers using Synchronous Clear  ; 136   ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 314   ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 316   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------+
+; Inverted Register Statistics                         ;
++--------------------------------------------+---------+
+; Inverted Register                          ; Fan out ;
++--------------------------------------------+---------+
+; score_lives:score_inst|l_count[0]          ; 12      ;
+; score_lives:score_inst|l_count[1]          ; 11      ;
+; conveyor_belt:level_inst|pipes[1].gap_y[1] ; 4       ;
+; conveyor_belt:level_inst|pipes[1].has_gift ; 3       ;
+; conveyor_belt:level_inst|pipes[1].gap_y[7] ; 8       ;
+; conveyor_belt:level_inst|pipes[1].gap_y[4] ; 13      ;
+; conveyor_belt:level_inst|pipes[1].gap_y[2] ; 4       ;
+; conveyor_belt:level_inst|pipes[2].gap_y[1] ; 4       ;
+; conveyor_belt:level_inst|pipes[2].gap_y[7] ; 8       ;
+; conveyor_belt:level_inst|pipes[2].gap_y[6] ; 9       ;
+; conveyor_belt:level_inst|pipes[2].gap_y[5] ; 12      ;
+; conveyor_belt:level_inst|pipes[2].gap_y[4] ; 12      ;
+; conveyor_belt:level_inst|pipes[2].gap_y[3] ; 5       ;
+; conveyor_belt:level_inst|pipes[3].has_gift ; 3       ;
+; conveyor_belt:level_inst|pipes[3].gap_y[6] ; 9       ;
+; conveyor_belt:level_inst|pipes[3].gap_y[5] ; 12      ;
+; conveyor_belt:level_inst|pipes[3].gap_y[2] ; 4       ;
+; conveyor_belt:level_inst|pipes[0].gap_y[7] ; 7       ;
+; conveyor_belt:level_inst|pipes[0].gap_y[6] ; 8       ;
+; conveyor_belt:level_inst|pipes[0].gap_y[3] ; 5       ;
+; bird_logic:bird_inst|ball_y_pos[7]         ; 28      ;
+; bird_logic:bird_inst|ball_y_pos[4]         ; 57      ;
+; bird_logic:bird_inst|ball_y_pos[6]         ; 33      ;
+; bird_logic:bird_inst|ball_y_pos[5]         ; 40      ;
+; conveyor_belt:level_inst|pipes[0].x[7]     ; 9       ;
+; conveyor_belt:level_inst|pipes[0].x[9]     ; 9       ;
+; conveyor_belt:level_inst|pipes[3].x[2]     ; 7       ;
+; conveyor_belt:level_inst|pipes[3].x[9]     ; 9       ;
+; conveyor_belt:level_inst|pipes[3].x[10]    ; 7       ;
+; conveyor_belt:level_inst|pipes[1].x[3]     ; 7       ;
+; conveyor_belt:level_inst|pipes[1].x[2]     ; 7       ;
+; conveyor_belt:level_inst|pipes[1].x[5]     ; 9       ;
+; conveyor_belt:level_inst|pipes[1].x[7]     ; 9       ;
+; conveyor_belt:level_inst|pipes[1].x[9]     ; 9       ;
+; conveyor_belt:level_inst|pipes[1].x[8]     ; 9       ;
+; conveyor_belt:level_inst|pipes[2].x[4]     ; 8       ;
+; conveyor_belt:level_inst|pipes[2].x[3]     ; 7       ;
+; conveyor_belt:level_inst|pipes[2].x[7]     ; 9       ;
+; conveyor_belt:level_inst|pipes[2].x[6]     ; 9       ;
+; conveyor_belt:level_inst|pipes[2].x[10]    ; 7       ;
+; lfsr:lfsr_inst|q[1]                        ; 2       ;
+; lfsr:lfsr_inst|q[7]                        ; 5       ;
+; lfsr:lfsr_inst|q[5]                        ; 2       ;
+; lfsr:lfsr_inst|q[3]                        ; 2       ;
+; MOUSE:mouse_inst|send_char                 ; 3       ;
+; MOUSE:mouse_inst|SHIFTOUT[3]               ; 1       ;
+; MOUSE:mouse_inst|SHIFTOUT[5]               ; 1       ;
+; MOUSE:mouse_inst|SHIFTOUT[6]               ; 1       ;
+; MOUSE:mouse_inst|SHIFTOUT[7]               ; 1       ;
+; MOUSE:mouse_inst|SHIFTOUT[8]               ; 1       ;
+; Total number of inverted registers = 50    ;         ;
++--------------------------------------------+---------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                          ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |de0_cv_default|score_lives:score_inst|cooldown_timer[4]  ;
+; 3:1                ; 28 bits   ; 56 LEs        ; 0 LEs                ; 56 LEs                 ; Yes        ; |de0_cv_default|score_lives:score_inst|cooldown_timer[27] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |de0_cv_default|VGA_SYNC:vga_sync_inst|v_count[9]         ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |de0_cv_default|bird_logic:bird_inst|ball_y_pos[2]        ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |de0_cv_default|bird_logic:bird_inst|ball_y_pos[9]        ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |de0_cv_default|bird_logic:bird_inst|ball_y_pos[7]        ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |de0_cv_default|display_pixel_router:router_inst|vid_r    ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |de0_cv_default|display_pixel_router:router_inst|vid_r[0] ;
+; 8:1                ; 2 bits    ; 10 LEs        ; 10 LEs               ; 0 LEs                  ; No         ; |de0_cv_default|text_engine:t_menu|char_rom:rom_inst|Mux0 ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |de0_cv_default|seven_seg:seg_score0|SevenSeg_out[0]      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |de0_cv_default|seven_seg:seg_score1|SevenSeg_out[5]      ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |de0_cv_default|seven_seg:seg_lives|SevenSeg_out[3]       ;
+; 6:1                ; 4 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |de0_cv_default|display_pixel_router:router_inst|vid_b[3] ;
+; 7:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; No         ; |de0_cv_default|game_fsm:fsm_inst|Selector2               ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |de0_cv_default|game_fsm:fsm_inst|Selector0               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                           ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                            ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                            ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                             ;
++---------------------------------+--------------------+------+---------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                           ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                            ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Source assignments for text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                           ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                            ;
++---------------------------------+--------------------+------+--------------------------------------------------------------+
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_menu ;
++----------------+-----------+------------------------------------+
+; Parameter Name ; Value     ; Type                               ;
++----------------+-----------+------------------------------------+
+; text_to_print  ; MAIN MENU ; String                             ;
++----------------+-----------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                  ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                               ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                          ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                        ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                               ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                               ;
+; WIDTH_A                            ; 8                    ; Signed Integer                                        ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer                                        ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer                                        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                               ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                               ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WIDTH_B                            ; 1                    ; Untyped                                               ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                               ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                               ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                               ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                               ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                               ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                               ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                               ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; INIT_FILE                          ; tcgrom.mif           ; Untyped                                               ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                               ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                               ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                               ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                               ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                               ;
+; CBXI_PARAMETER                     ; altsyncram_d5g1      ; Untyped                                               ;
++------------------------------------+----------------------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_train ;
++----------------+----------+--------------------------------------+
+; Parameter Name ; Value    ; Type                                 ;
++----------------+----------+--------------------------------------+
+; text_to_print  ; TRAINING ; String                               ;
++----------------+----------+--------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+--------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                   ;
++------------------------------------+----------------------+--------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                                ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                             ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                           ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                           ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                         ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                                ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                                ;
+; WIDTH_A                            ; 8                    ; Signed Integer                                         ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer                                         ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer                                         ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                                ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                                ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                                ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                                ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                                ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                                ;
+; WIDTH_B                            ; 1                    ; Untyped                                                ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                                ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                                ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                                ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                                ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                                ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                                ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                                ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                                ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                                ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                                ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                                ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                                ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                                ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                         ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                                ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                                ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                                ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                                ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                                ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                                ;
+; INIT_FILE                          ; tcgrom.mif           ; Untyped                                                ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                                ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                                ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                                ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                                ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                                ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                                ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                                ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                                ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                                ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                                ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                                ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                                ;
+; CBXI_PARAMETER                     ; altsyncram_d5g1      ; Untyped                                                ;
++------------------------------------+----------------------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_game ;
++----------------+-------+----------------------------------------+
+; Parameter Name ; Value ; Type                                   ;
++----------------+-------+----------------------------------------+
+; text_to_print  ; GAME  ; String                                 ;
++----------------+-------+----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                  ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                               ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                          ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                        ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                               ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                               ;
+; WIDTH_A                            ; 8                    ; Signed Integer                                        ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer                                        ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer                                        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                               ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                               ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WIDTH_B                            ; 1                    ; Untyped                                               ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                               ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                               ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                               ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                               ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                               ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                               ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                               ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; INIT_FILE                          ; tcgrom.mif           ; Untyped                                               ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                               ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                               ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                               ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                               ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                               ;
+; CBXI_PARAMETER                     ; altsyncram_d5g1      ; Untyped                                               ;
++------------------------------------+----------------------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_over ;
++----------------+-----------+------------------------------------+
+; Parameter Name ; Value     ; Type                               ;
++----------------+-----------+------------------------------------+
+; text_to_print  ; GAME OVER ; String                             ;
++----------------+-----------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                                  ;
++------------------------------------+----------------------+-------------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                               ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                            ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                          ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                          ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                        ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                               ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                               ;
+; WIDTH_A                            ; 8                    ; Signed Integer                                        ;
+; WIDTHAD_A                          ; 9                    ; Signed Integer                                        ;
+; NUMWORDS_A                         ; 512                  ; Signed Integer                                        ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                               ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                               ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                               ;
+; WIDTH_B                            ; 1                    ; Untyped                                               ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                               ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                               ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                               ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                               ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                               ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                               ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                               ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                               ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                               ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                               ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                        ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                               ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                               ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                               ;
+; INIT_FILE                          ; tcgrom.mif           ; Untyped                                               ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                               ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                               ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                               ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                               ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                               ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                               ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                               ;
+; CBXI_PARAMETER                     ; altsyncram_d5g1      ; Untyped                                               ;
++------------------------------------+----------------------+-------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                                  ;
++-------------------------------------------+-----------------------------------------------------------------------+
+; Name                                      ; Value                                                                 ;
++-------------------------------------------+-----------------------------------------------------------------------+
+; Number of entity instances                ; 4                                                                     ;
+; Entity Instance                           ; text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; ROM                                                                   ;
+;     -- WIDTH_A                            ; 8                                                                     ;
+;     -- NUMWORDS_A                         ; 512                                                                   ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                          ;
+;     -- WIDTH_B                            ; 1                                                                     ;
+;     -- NUMWORDS_B                         ; 1                                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                          ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                  ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                             ;
+; Entity Instance                           ; text_engine:t_train|char_rom:rom_inst|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; ROM                                                                   ;
+;     -- WIDTH_A                            ; 8                                                                     ;
+;     -- NUMWORDS_A                         ; 512                                                                   ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                          ;
+;     -- WIDTH_B                            ; 1                                                                     ;
+;     -- NUMWORDS_B                         ; 1                                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                          ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                  ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                             ;
+; Entity Instance                           ; text_engine:t_game|char_rom:rom_inst|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; ROM                                                                   ;
+;     -- WIDTH_A                            ; 8                                                                     ;
+;     -- NUMWORDS_A                         ; 512                                                                   ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                          ;
+;     -- WIDTH_B                            ; 1                                                                     ;
+;     -- NUMWORDS_B                         ; 1                                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                          ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                  ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                             ;
+; Entity Instance                           ; text_engine:t_over|char_rom:rom_inst|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; ROM                                                                   ;
+;     -- WIDTH_A                            ; 8                                                                     ;
+;     -- NUMWORDS_A                         ; 512                                                                   ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                          ;
+;     -- WIDTH_B                            ; 1                                                                     ;
+;     -- NUMWORDS_B                         ; 1                                                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                                ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                          ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                                  ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                             ;
++-------------------------------------------+-----------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "text_engine:t_over"                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; position_x[7..6] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; position_x[9..8] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_x[5..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_x[2..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_x[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; position_y[7..6] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; position_y[9..8] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y[5..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y[2..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; text_scale[1]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; text_scale[0]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; text_rgb         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "text_engine:t_game"                                                                          ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; position_x    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; text_scale[1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; text_scale[0] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; text_rgb      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "text_engine:t_train"                                                                         ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; position_x    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; text_scale[1] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; text_scale[0] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; text_rgb      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "text_engine:t_menu"                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; position_x[7..6] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; position_x[9..8] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_x[5..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_x[2..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_x[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; position_y[7..6] ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; position_y[9..8] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y[5..4] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y[2..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; position_y[3]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; text_scale[1]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; text_scale[0]    ; Input  ; Info     ; Stuck at GND                                                                        ;
+; text_rgb         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "MOUSE:mouse_inst"                                                                                  ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; right_button        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; mouse_cursor_row    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; mouse_cursor_column ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "VGA_SYNC:vga_sync_inst"                                                                  ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port      ; Type   ; Severity ; Details                                                                             ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+; red       ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; green     ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; blue      ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; red_out   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; green_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; blue_out  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 383                         ;
+;     CLR               ; 33                          ;
+;     CLR SCLR          ; 3                           ;
+;     ENA               ; 28                          ;
+;     ENA CLR           ; 165                         ;
+;     ENA CLR SCLR      ; 113                         ;
+;     ENA SCLR          ; 10                          ;
+;     SCLR              ; 10                          ;
+;     plain             ; 21                          ;
+; arriav_io_obuf        ; 2                           ;
+; arriav_lcell_comb     ; 2068                        ;
+;     arith             ; 1028                        ;
+;         0 data inputs ; 193                         ;
+;         1 data inputs ; 808                         ;
+;         2 data inputs ; 3                           ;
+;         5 data inputs ; 24                          ;
+;     extend            ; 7                           ;
+;         7 data inputs ; 7                           ;
+;     normal            ; 1033                        ;
+;         0 data inputs ; 2                           ;
+;         1 data inputs ; 36                          ;
+;         2 data inputs ; 112                         ;
+;         3 data inputs ; 74                          ;
+;         4 data inputs ; 248                         ;
+;         5 data inputs ; 200                         ;
+;         6 data inputs ; 361                         ;
+; boundary_port         ; 84                          ;
+; stratixv_ram_block    ; 32                          ;
+;                       ;                             ;
+; Max LUT depth         ; 10.70                       ;
+; Average LUT depth     ; 7.13                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:05     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Processing started: Wed May 27 20:14:00 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off de0_cv_default -c de0_cv_default
+Warning (136002): Ignored duplicate of assignment PARTITION_SOURCE for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_PRESERVE_HIGH_SPEED_TILES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IGNORE_SOURCE_FILE_CHANGES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ALWAYS_USE_QXP_NETLIST for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_NEW_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PIN_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PROMOTE_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_TYPE for node ""
+Warning (136002): Ignored duplicate of assignment ALLOW_MULTIPLE_PERSONAS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ASD_REGION_ID for node ""
+Warning (136002): Ignored duplicate of assignment CROSS_BOUNDARY_OPTIMIZATIONS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_CONSTANTS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_INVERSIONS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_BIDIRS for node ""
+Warning (136002): Ignored duplicate of assignment ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_EXTRACT_HARD_BLOCK_NODES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ENABLE_STRICT_PRESERVATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_BACK_ANNOTATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_COLOR for node ""
+Warning (136002): Ignored duplicate of assignment HIERARCHY_BLACKBOX_FILE for node "|"
+Warning (136002): Ignored duplicate of assignment PARTITION_SOURCE for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_PRESERVE_HIGH_SPEED_TILES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IGNORE_SOURCE_FILE_CHANGES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ALWAYS_USE_QXP_NETLIST for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_NEW_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PIN_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PROMOTE_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_TYPE for node ""
+Warning (136002): Ignored duplicate of assignment ALLOW_MULTIPLE_PERSONAS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ASD_REGION_ID for node ""
+Warning (136002): Ignored duplicate of assignment CROSS_BOUNDARY_OPTIMIZATIONS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_CONSTANTS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_INVERSIONS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_BIDIRS for node ""
+Warning (136002): Ignored duplicate of assignment ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_EXTRACT_HARD_BLOCK_NODES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ENABLE_STRICT_PRESERVATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_BACK_ANNOTATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_COLOR for node ""
+Warning (136002): Ignored duplicate of assignment HIERARCHY_BLACKBOX_FILE for node "|"
+Warning (136002): Ignored duplicate of assignment PARTITION_SOURCE for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_PRESERVE_HIGH_SPEED_TILES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IGNORE_SOURCE_FILE_CHANGES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ALWAYS_USE_QXP_NETLIST for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_NEW_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PIN_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PROMOTE_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_TYPE for node ""
+Warning (136002): Ignored duplicate of assignment ALLOW_MULTIPLE_PERSONAS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ASD_REGION_ID for node ""
+Warning (136002): Ignored duplicate of assignment CROSS_BOUNDARY_OPTIMIZATIONS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_CONSTANTS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_INVERSIONS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_BIDIRS for node ""
+Warning (136002): Ignored duplicate of assignment ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_EXTRACT_HARD_BLOCK_NODES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ENABLE_STRICT_PRESERVATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_BACK_ANNOTATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_COLOR for node ""
+Warning (136002): Ignored duplicate of assignment HIERARCHY_BLACKBOX_FILE for node "|"
+Warning (136002): Ignored duplicate of assignment PARTITION_SOURCE for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_PRESERVE_HIGH_SPEED_TILES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IGNORE_SOURCE_FILE_CHANGES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ALWAYS_USE_QXP_NETLIST for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_NEW_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_EXISTING_LOGICLOCK_REGIONS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PIN_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_IMPORT_PROMOTE_ASSIGNMENTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_TYPE for node ""
+Warning (136002): Ignored duplicate of assignment ALLOW_MULTIPLE_PERSONAS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ASD_REGION_ID for node ""
+Warning (136002): Ignored duplicate of assignment CROSS_BOUNDARY_OPTIMIZATIONS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_CONSTANTS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PROPAGATE_INVERSIONS_ON_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment REMOVE_LOGIC_ON_UNCONNECTED_OUTPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment MERGE_EQUIVALENT_BIDIRS for node ""
+Warning (136002): Ignored duplicate of assignment ABSORB_PATHS_FROM_OUTPUTS_TO_INPUTS for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_EXTRACT_HARD_BLOCK_NODES for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_ENABLE_STRICT_PRESERVATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_BACK_ANNOTATION for node ""
+Warning (136002): Ignored duplicate of assignment PARTITION_COLOR for node ""
+Warning (136002): Ignored duplicate of assignment HIERARCHY_BLACKBOX_FILE for node "|"
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 2 design units, including 1 entities, in source file vga_sync.vhd
+    Info (12022): Found design unit 1: VGA_SYNC-a File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/vga_sync.vhd Line: 13
+    Info (12023): Found entity 1: VGA_SYNC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/vga_sync.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file text_engine.vhd
+    Info (12022): Found design unit 1: text_engine-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/text_engine.vhd Line: 19
+    Info (12023): Found entity 1: text_engine File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/text_engine.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file seven_seg.vhd
+    Info (12022): Found design unit 1: seven_seg-arc1 File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/seven_seg.vhd Line: 12
+    Info (12023): Found entity 1: seven_seg File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/seven_seg.vhd Line: 7
+Info (12021): Found 2 design units, including 1 entities, in source file score_lives.vhd
+    Info (12022): Found design unit 1: score_lives-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/score_lives.vhd Line: 25
+    Info (12023): Found entity 1: score_lives File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/score_lives.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file mouse.vhd
+    Info (12022): Found design unit 1: MOUSE-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 18
+    Info (12023): Found entity 1: MOUSE File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file lfsr.vhd
+    Info (12022): Found design unit 1: lfsr-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/lfsr.vhd Line: 12
+    Info (12023): Found entity 1: lfsr File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/lfsr.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file game_fsm.vhd
+    Info (12022): Found design unit 1: game_fsm-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/game_fsm.vhd Line: 17
+    Info (12023): Found entity 1: game_fsm File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/game_fsm.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file display_pixel_router.vhd
+    Info (12022): Found design unit 1: display_pixel_router-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/display_pixel_router.vhd Line: 25
+    Info (12023): Found entity 1: display_pixel_router File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/display_pixel_router.vhd Line: 4
+Info (12021): Found 2 design units, including 1 entities, in source file de0_cv_default.vhd
+    Info (12022): Found design unit 1: de0_cv_default-structural File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 22
+    Info (12023): Found entity 1: de0_cv_default File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file conveyor_belt.vhd
+    Info (12022): Found design unit 1: conveyor_belt-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 28
+    Info (12023): Found entity 1: conveyor_belt File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file clk25_gen.vhd
+    Info (12022): Found design unit 1: clk25_gen-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/clk25_gen.vhd Line: 12
+    Info (12023): Found entity 1: clk25_gen File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/clk25_gen.vhd Line: 5
+Info (12021): Found 2 design units, including 1 entities, in source file char_rom.vhd
+    Info (12022): Found design unit 1: char_rom-SYN File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/char_rom.vhd Line: 20
+    Info (12023): Found entity 1: char_rom File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/char_rom.vhd Line: 9
+Info (12021): Found 2 design units, including 1 entities, in source file bird_logic.vhd
+    Info (12022): Found design unit 1: bird_logic-behavior File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/bird_logic.vhd Line: 17
+    Info (12023): Found entity 1: bird_logic File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/bird_logic.vhd Line: 6
+Info (12127): Elaborating entity "de0_cv_default" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_default.vhd(30): object "right_btn" assigned a value but never read File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 30
+Warning (10036): Verilog HDL or VHDL warning at de0_cv_default.vhd(48): object "dummy_rgb" assigned a value but never read File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 48
+Warning (10873): Using initial value X (don't care) for net "led[8..2]" at de0_cv_default.vhd(13) File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+Info (12128): Elaborating entity "clk25_gen" for hierarchy "clk25_gen:clk_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 55
+Info (12128): Elaborating entity "VGA_SYNC" for hierarchy "VGA_SYNC:vga_sync_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 58
+Info (12128): Elaborating entity "MOUSE" for hierarchy "MOUSE:mouse_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 68
+Warning (10036): Verilog HDL or VHDL warning at mouse.vhd(25): object "CHARIN" assigned a value but never read File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 25
+Warning (10492): VHDL Process Statement warning at mouse.vhd(151): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 151
+Warning (10492): VHDL Process Statement warning at mouse.vhd(155): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 155
+Warning (10492): VHDL Process Statement warning at mouse.vhd(156): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 156
+Warning (10492): VHDL Process Statement warning at mouse.vhd(157): signal "CHAROUT" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 157
+Info (12128): Elaborating entity "lfsr" for hierarchy "lfsr:lfsr_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 75
+Info (12128): Elaborating entity "game_fsm" for hierarchy "game_fsm:fsm_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 79
+Info (12128): Elaborating entity "score_lives" for hierarchy "score_lives:score_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 84
+Info (12128): Elaborating entity "bird_logic" for hierarchy "bird_logic:bird_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 90
+Info (12128): Elaborating entity "conveyor_belt" for hierarchy "conveyor_belt:level_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 96
+Info (12128): Elaborating entity "text_engine" for hierarchy "text_engine:t_menu" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 104
+Info (12128): Elaborating entity "char_rom" for hierarchy "text_engine:t_menu|char_rom:rom_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/text_engine.vhd Line: 75
+Info (12128): Elaborating entity "altsyncram" for hierarchy "text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/char_rom.vhd Line: 51
+Info (12130): Elaborated megafunction instantiation "text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/char_rom.vhd Line: 51
+Info (12133): Instantiated megafunction "text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/char_rom.vhd Line: 51
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "tcgrom.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone III"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "512"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "9"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_d5g1.tdf
+    Info (12023): Found entity 1: altsyncram_d5g1 File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/db/altsyncram_d5g1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_d5g1" for hierarchy "text_engine:t_menu|char_rom:rom_inst|altsyncram:altsyncram_component|altsyncram_d5g1:auto_generated" File: c:/intelfpga_lite/24.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "text_engine" for hierarchy "text_engine:t_train" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 110
+Info (12128): Elaborating entity "text_engine" for hierarchy "text_engine:t_game" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 116
+Info (12128): Elaborating entity "text_engine" for hierarchy "text_engine:t_over" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 122
+Info (12128): Elaborating entity "display_pixel_router" for hierarchy "display_pixel_router:router_inst" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 132
+Info (12128): Elaborating entity "seven_seg" for hierarchy "seven_seg:seg_score0" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 147
+Info (13000): Registers with preset signals will power-up high File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/mouse.vhd Line: 146
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "hex2[5]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[0]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[1]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[2]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[3]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[4]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[5]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex3[6]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[0]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[1]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[2]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[3]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[4]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[5]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "hex4[6]" is stuck at VCC File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 12
+    Warning (13410): Pin "led[2]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+    Warning (13410): Pin "led[3]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+    Warning (13410): Pin "led[4]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+    Warning (13410): Pin "led[5]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+    Warning (13410): Pin "led[6]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+    Warning (13410): Pin "led[7]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+    Warning (13410): Pin "led[8]" is stuck at GND File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 13
+Info (286030): Timing-Driven Synthesis is running
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[9] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[8] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[7] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[5] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[3] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].x[2] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].gap_y[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].gap_y[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].gap_y[7] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].gap_y[4] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].gap_y[2] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[1].gap_y[1] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[7] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[6] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[5] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[4] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[3] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].gap_y[1] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[7] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[6] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[4] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[3] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[2].x[10] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].x[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].gap_y[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].gap_y[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].gap_y[6] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].gap_y[5] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].gap_y[2] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].x[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].x[9] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].x[2] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[3].x[10] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].x[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].gap_y[0] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].gap_y[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].gap_y[7] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].gap_y[6] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].gap_y[3] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].x[31] will power up to Low File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].x[9] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+    Critical Warning (18010): Register conveyor_belt:level_inst|pipes[0].x[7] will power up to High File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/conveyor_belt.vhd Line: 35
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 10 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "sw[0]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[1]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[2]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[3]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[4]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[5]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[6]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[7]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "sw[8]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 9
+    Warning (15610): No output dependent on input pin "key[3]" File: C:/Users/skipp/Desktop/COMPSYS-305-group-35-mini-project/Final-copy-file/de0_cv_default.vhd Line: 10
+Info (21057): Implemented 2247 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 16 input pins
+    Info (21059): Implemented 66 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 2131 logic cells
+    Info (21064): Implemented 32 RAM segments
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 188 warnings
+    Info: Peak virtual memory: 4958 megabytes
+    Info: Processing ended: Wed May 27 20:14:17 2026
+    Info: Elapsed time: 00:00:17
+    Info: Total CPU time (on all processors): 00:00:29
+
+
